@@ -1,4 +1,28 @@
 <resources>
-    <string name="app_name">project</string>
+    <string name="app_name">CarNote</string>
     <string name="test">testing</string>
+    <string name="hatch">hatchback</string>
+    <string name="sedan">sedan</string>
+    <string name="minivan">minivan</string>
+    <string name="suv">SUV</string>
+    <string name="cross">crossover</string>
+    <string name="coupe">coupé</string>
+    <string name="conv">convertible</string>
+    <string name="cname">CarName</string>
+    <string name="cartype">CarType</string>
+    <string name="prompt">FuelType</string>
+    <string name="gps">GPS</string>
+    <string name="abs">ABS</string>
+    <string name="climate_control">climate control</string>
+    <string name="parking_sensor">parking sensor</string>
+    <string name="lane_assist">lane assist</string>
+    <string name="cruise_control">cruise control</string>
+    <string name="elecric_windows">electric windows</string>
+    <string name="add">add</string>
+    <string-array name="fueltype">
+        <item>petrol</item>
+        <item>diesel</item>
+        <item>electric</item>
+        <item>hybrid</item>
+    </string-array>
 </resources>

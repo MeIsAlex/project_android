@@ -1,13 +1,14 @@
 package com.example.project;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
 public class carDetail extends AppCompatActivity {
-
+    Toolbar myToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,5 +19,7 @@ public class carDetail extends AppCompatActivity {
             String t = intent.getStringExtra(intent.EXTRA_TEXT);
             text.setText(t);
         }
+        myToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
     }
 }
