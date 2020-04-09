@@ -28,8 +28,8 @@ public class createCar extends AppCompatActivity implements AdapterView.OnItemSe
     Toolbar myToolbar;
     Spinner spinner;
     Button btn;
-    TextView namel,powerl,yearl,makel;
-    EditText power,name,year,make;
+    TextView namel,powerl,yearl,makel,pricel;
+    EditText power,name,year,make,price;
     RadioGroup group;
     LinearLayout checkboxes;
     @Override
@@ -52,6 +52,8 @@ public class createCar extends AppCompatActivity implements AdapterView.OnItemSe
         powerl = findViewById(R.id.powerLabel);
         yearl = findViewById(R.id.yearLabel);
         btn = findViewById(R.id.button);
+        price = findViewById(R.id.carPrice);
+        pricel = findViewById(R.id.pricel);
         group = findViewById(R.id.radioGroup);
         power = findViewById(R.id.power);
         name = findViewById(R.id.name);
@@ -76,8 +78,13 @@ public class createCar extends AppCompatActivity implements AdapterView.OnItemSe
                 newcar.carName = name.getText().toString();
                 newcar.carMake = make.getText().toString();
                 newcar.carPower = power.getText().toString();
+                newcar.price = price.getText().toString();
                 newcar.year = year.getText().toString();
                 newcar.options = options;
+                if(newcar.price.isEmpty()){
+                    pricel.setTextColor(Color.parseColor("#FF0000"));
+                    status = 1;
+                }
                 if(newcar.carName.isEmpty()){
                     namel.setTextColor(Color.parseColor("#FF0000"));
                     status = 1;
@@ -95,11 +102,9 @@ public class createCar extends AppCompatActivity implements AdapterView.OnItemSe
                     status = 1;
                 }
                 if(status == 0){
-                    //TODO create new car  in db go back to main
                     databaseHelper databasehelper = databaseHelper.getInstance(createCar.this);
                     databasehelper.addCar(newcar);
                     List<String> test = databasehelper.getCarNames();
-                    Log.d("DBHELPER_ONCREATE","OnCreate initiated.");
                     Intent intent = new Intent(createCar.this, MainActivity.class);
                     startActivity(intent);
                 }

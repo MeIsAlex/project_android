@@ -13,5 +13,6 @@ public class Car {
     public String carMake;
     public String fuel;
     public String carPower;
+    public String price;
     public List<String> options =new ArrayList<String>(0);
 }

@@ -25,6 +25,7 @@ public class carDetail extends AppCompatActivity {
         TextView type = findViewById(R.id.carType);
         TextView year = findViewById(R.id.carYear);
         TextView power = findViewById(R.id.carPower);
+        TextView price =  findViewById(R.id.price);
         Intent intent = getIntent();
         if(intent.hasExtra(Intent.EXTRA_TEXT)==true){
             String id = intent.getStringExtra(intent.EXTRA_TEXT);
@@ -36,6 +37,7 @@ public class carDetail extends AppCompatActivity {
             type.setText(car.carType);
             year.setText(car.year);
             power.setText(car.carPower);
+            price.setText(car.price);
             opt = findViewById(R.id.options);
             option = findViewById(R.id.option);
             final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.option,R.id.option,car.options){

@@ -15,7 +15,7 @@ import java.util.List;
 
 public class databaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "carDatabase";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
 
     // Table Names
     private static final String TABLE_CARS = "cars";
@@ -34,6 +34,7 @@ public class databaseHelper extends SQLiteOpenHelper {
     private static final String KEY_CAR_ID = "id";
     private static final String KEY_CAR_NAME = "name";
     private static final String KEY_CAR_POWER = "power";
+    private static final String KEY_CAR_PRICE = "price";
     private static final String KEY_CAR_YEAR = "year";
     private static final String KEY_CAR_MAKE_FK = "makeId";
     private static final String KEY_CAR_TYPE_FK = "typeId";
@@ -80,10 +81,11 @@ public class databaseHelper extends SQLiteOpenHelper {
         Car ret = new Car();
         if(cursor.moveToFirst()){
             ret.carName = cursor.getString(1);
-            ret.carMake = cursor.getString(8);
-            ret.carType = cursor.getString(10);
-            ret.fuel = cursor.getString(12);
+            ret.carMake = cursor.getString(9);
+            ret.carType = cursor.getString(11);
+            ret.fuel = cursor.getString(13);
             ret.year = cursor.getString(3);
+            ret.price = cursor.getString(4);
             ret.carPower = cursor.getString(2);
         }
         String OPTIONS_QUERY = "SELECT options.name FROM cars LEFT JOIN optionsCar on cars.id = optionsCar.carId " +
@@ -149,6 +151,7 @@ public class databaseHelper extends SQLiteOpenHelper {
         val.put(KEY_CAR_FUEL_FK,fuelId);
         val.put(KEY_CAR_MAKE_FK,makeId);
         val.put(KEY_CAR_TYPE_FK,typeId);
+        val.put(KEY_CAR_PRICE,car.price);
         long carId =db.insert(TABLE_CARS,null,val);
         if(carId != -1){
             String INSERT_OPTIONS = "INSERT INTO " + TABLE_OPTIONS_CAR + "("+KEY_OPTION_CAR_CAR+","+KEY_OPTIONS_CAR_OPTIONS+")" + " VALUES";
@@ -228,6 +231,7 @@ public class databaseHelper extends SQLiteOpenHelper {
                 KEY_CAR_NAME + " TEXT, " +
                 KEY_CAR_POWER + " TEXT, " +
                 KEY_CAR_YEAR + " TEXT, " +
+                KEY_CAR_PRICE + " TEXT, " +
                 KEY_CAR_MAKE_FK + " INTEGER REFERENCES " + TABLE_MAKE + "," +
                 KEY_CAR_TYPE_FK + " INTEGER REFERENCES " + TABLE_TYPES + "," +
                 KEY_CAR_FUEL_FK + " INTEGER REFERENCES " + TABLE_FUEL +
