@@ -13,9 +13,12 @@ import android.view.View;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements carsAdapter.OnCarListener {
-    ArrayList<String> carList= new ArrayList<String>(1);
+    List<String> carList= new ArrayList<String>(0);
+    List<String> makeList= new ArrayList<String>(0);
+    List<Integer> idList = new ArrayList<>(0);
     FloatingActionButton add;
     Toolbar myToolbar;
     @Override
@@ -23,10 +26,11 @@ public class MainActivity extends AppCompatActivity implements carsAdapter.OnCar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView cars = (RecyclerView) findViewById(R.id.cars);
-        for(int i=0;i<20;i++) {
-            carList.add("test");
-        }
-        add= findViewById(R.id.floatingActionButton);
+        databaseHelper db = databaseHelper.getInstance(this);
+        carList = db.getCarNames();
+        makeList = db.getCarMakes();
+        idList = db.getCarIds();
+        add = findViewById(R.id.floatingActionButton);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements carsAdapter.OnCar
         myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        carsAdapter adapter = new carsAdapter(carList,this);
+        carsAdapter adapter = new carsAdapter(carList,makeList,this);
         cars.setAdapter(adapter);
         cars.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -49,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements carsAdapter.OnCar
     @Override
     public void onCarClick(int pos) {
         Intent intent = new Intent(this, carDetail.class);
-        intent.putExtra(Intent.EXTRA_TEXT, String.valueOf(pos));
+        intent.putExtra(Intent.EXTRA_TEXT, String.valueOf(idList.get(pos)));
 
         startActivity(intent);
     }

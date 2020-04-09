@@ -15,9 +15,11 @@ import java.util.List;
 
 public class carsAdapter extends RecyclerView.Adapter<carsAdapter.ViewHolder> {
     private List<String> mcars;
+    private List<String> mMake;
     private OnCarListener mOnCarListener;
-    public carsAdapter(List<String> cars,OnCarListener OnCarListener) {
+    public carsAdapter(List<String> cars,List<String> makes,OnCarListener OnCarListener) {
         mcars = cars;
+        mMake = makes;
         this.mOnCarListener = OnCarListener;
     }
     @Override
@@ -32,8 +34,11 @@ public class carsAdapter extends RecyclerView.Adapter<carsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(carsAdapter.ViewHolder holder, int position) {
         String car = mcars.get(position);
+        String maketext = mMake.get(position);
         TextView name = holder.carName;
+        TextView make = holder.carMake;
         name.setText(car);
+        make.setText(maketext);
     }
 
     @Override
@@ -43,10 +48,12 @@ public class carsAdapter extends RecyclerView.Adapter<carsAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView carName;
+        public TextView carMake;
         OnCarListener onCarListener;
         public ViewHolder(View itemView,OnCarListener onCarListener){
             super(itemView);
             carName = (TextView) itemView.findViewById(R.id.car_text);
+            carMake = itemView.findViewById(R.id.car_make);
             this.onCarListener = onCarListener;
             itemView.setOnClickListener(this);
         }

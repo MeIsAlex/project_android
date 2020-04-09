@@ -3,8 +3,10 @@ package com.example.project;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.String.valueOf;
 
@@ -95,6 +98,10 @@ public class createCar extends AppCompatActivity implements AdapterView.OnItemSe
                     //TODO create new car  in db go back to main
                     databaseHelper databasehelper = databaseHelper.getInstance(createCar.this);
                     databasehelper.addCar(newcar);
+                    List<String> test = databasehelper.getCarNames();
+                    Log.d("DBHELPER_ONCREATE","OnCreate initiated.");
+                    Intent intent = new Intent(createCar.this, MainActivity.class);
+                    startActivity(intent);
                 }
             }
         });

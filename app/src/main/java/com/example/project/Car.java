@@ -3,6 +3,7 @@ package com.example.project;
 import android.graphics.Color;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Car {
 
@@ -12,5 +13,5 @@ public class Car {
     public String carMake;
     public String fuel;
     public String carPower;
-    public ArrayList<String> options;
+    public List<String> options =new ArrayList<String>(0);
 }
