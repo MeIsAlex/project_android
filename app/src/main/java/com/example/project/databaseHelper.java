@@ -71,6 +71,30 @@ public class databaseHelper extends SQLiteOpenHelper {
 
         };
     }
+    public void carDelete(int id){
+        int makeId = -1;
+        int count = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String checkMake = " SELECT makeId FROM " + TABLE_CARS + " WHERE id = " + id;
+        Cursor cursor = db.rawQuery(checkMake,null);
+        if(cursor.moveToFirst()){
+            makeId = cursor.getInt(0);
+        }
+        if(makeId != -1){
+            String countCars = "SELECT Count(*) FROM "+ TABLE_CARS +" WHERE makeId = " + makeId;
+            cursor = db.rawQuery(countCars,null);
+            if(cursor.moveToFirst()){
+                count = cursor.getInt(0);
+            }
+        }
+        if(count == 1){
+            db.delete(TABLE_MAKE,"id=?",new String[]{String.valueOf(makeId)});
+        }
+        db.delete(TABLE_OPTIONS_CAR,"carId=?",new String[]{String.valueOf(id)});
+        db.delete(TABLE_CARS,"id=?",new String[]{String.valueOf(id)});
+        cursor.close();
+        db.close();
+    }
     public Car getCar(String id){
         SQLiteDatabase db = this.getReadableDatabase();
         String QUERY = "SELECT * FROM cars LEFT JOIN carMake ON cars.makeId = carMake.id " +
@@ -80,6 +104,7 @@ public class databaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(QUERY,null);
         Car ret = new Car();
         if(cursor.moveToFirst()){
+            ret.id = cursor.getInt(0);
             ret.carName = cursor.getString(1);
             ret.carMake = cursor.getString(9);
             ret.carType = cursor.getString(11);
@@ -153,7 +178,7 @@ public class databaseHelper extends SQLiteOpenHelper {
         val.put(KEY_CAR_TYPE_FK,typeId);
         val.put(KEY_CAR_PRICE,car.price);
         long carId =db.insert(TABLE_CARS,null,val);
-        if(carId != -1){
+        if(carId != -1 && selOpt.size()>0){
             String INSERT_OPTIONS = "INSERT INTO " + TABLE_OPTIONS_CAR + "("+KEY_OPTION_CAR_CAR+","+KEY_OPTIONS_CAR_OPTIONS+")" + " VALUES";
             index = 0;
             int temp = selOpt.get(0)+1;

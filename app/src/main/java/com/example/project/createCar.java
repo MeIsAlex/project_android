@@ -52,7 +52,7 @@ public class createCar extends AppCompatActivity implements AdapterView.OnItemSe
         powerl = findViewById(R.id.powerLabel);
         yearl = findViewById(R.id.yearLabel);
         btn = findViewById(R.id.button);
-        price = findViewById(R.id.carPrice);
+        price = findViewById(R.id.price);
         pricel = findViewById(R.id.pricel);
         group = findViewById(R.id.radioGroup);
         power = findViewById(R.id.power);

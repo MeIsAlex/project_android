@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Car {
-
+    public int id;
     public String carType;
     public String year;
     public String carName;

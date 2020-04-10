@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements carsAdapter.OnCar
 
     @Override
     public void onCarClick(int pos) {
+
         Intent intent = new Intent(this, carDetail.class);
         intent.putExtra(Intent.EXTRA_TEXT, String.valueOf(idList.get(pos)));
 
