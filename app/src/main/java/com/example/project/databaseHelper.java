@@ -16,7 +16,7 @@ import java.util.List;
 public class databaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "carDatabase";
     private static final int DATABASE_VERSION = 7;
-
+// table names
     // Table Names
     private static final String TABLE_CARS = "cars";
     private static final String TABLE_TYPES = "carTypes";
@@ -24,7 +24,7 @@ public class databaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_OPTIONS_CAR = "optionsCar";
     private static final String TABLE_MAKE = "carMake";
     private static final String TABLE_FUEL = "carFuel";
-
+// row names
     private static final String KEY_TYPE_ID = "id";
     private static final String KEY_TYPE_NAME = "name";
 
@@ -50,6 +50,7 @@ public class databaseHelper extends SQLiteOpenHelper {
     private static final String KEY_OPTIONS_CAR_OPTIONS = "optionId";
     private static databaseHelper sInstance;
     private String[] options;
+    // use getinstance so we can use it as a singleton
     public static synchronized databaseHelper getInstance(Context context) {
 // https://guides.codepath.com/android/local-databases-with-sqliteopenhelper
         if (sInstance == null) {
@@ -71,16 +72,19 @@ public class databaseHelper extends SQLiteOpenHelper {
 
         };
     }
+    // used to delete a car
     public void carDelete(int id){
         int makeId = -1;
         int count = 0;
         SQLiteDatabase db = this.getWritableDatabase();
+        // get the make id
         String checkMake = " SELECT makeId FROM " + TABLE_CARS + " WHERE id = " + id;
         Cursor cursor = db.rawQuery(checkMake,null);
         if(cursor.moveToFirst()){
             makeId = cursor.getInt(0);
         }
         if(makeId != -1){
+            // check if make is used by other cars
             String countCars = "SELECT Count(*) FROM "+ TABLE_CARS +" WHERE makeId = " + makeId;
             cursor = db.rawQuery(countCars,null);
             if(cursor.moveToFirst()){
@@ -88,21 +92,27 @@ public class databaseHelper extends SQLiteOpenHelper {
             }
         }
         if(count == 1){
+            // if not delete it
             db.delete(TABLE_MAKE,"id=?",new String[]{String.valueOf(makeId)});
         }
+        // delete the options
         db.delete(TABLE_OPTIONS_CAR,"carId=?",new String[]{String.valueOf(id)});
+        // delete the car itself
         db.delete(TABLE_CARS,"id=?",new String[]{String.valueOf(id)});
         cursor.close();
         db.close();
     }
     public Car getCar(String id){
+        // get a car
         SQLiteDatabase db = this.getReadableDatabase();
         String QUERY = "SELECT * FROM cars LEFT JOIN carMake ON cars.makeId = carMake.id " +
                 "LEFT JOIN carTypes ON cars.typeId = carTypes.id " +
                 "LEFT JOIN carFuel ON cars.fuelId = carFuel.id " +
                 "WHERE cars.id = " + id;
+        // get car by his id
         Cursor cursor = db.rawQuery(QUERY,null);
         Car ret = new Car();
+        // put it in car
         if(cursor.moveToFirst()){
             ret.id = cursor.getInt(0);
             ret.carName = cursor.getString(1);
@@ -116,6 +126,7 @@ public class databaseHelper extends SQLiteOpenHelper {
         String OPTIONS_QUERY = "SELECT options.name FROM cars LEFT JOIN optionsCar on cars.id = optionsCar.carId " +
                 "LEFT JOIN options ON optionsCar.optionId = options.id WHERE cars.id = "+id;
         cursor = db.rawQuery(OPTIONS_QUERY,null);
+        // add options to the car
         if(cursor.moveToFirst()){
             if(cursor.moveToFirst()){
                 do{
@@ -126,10 +137,12 @@ public class databaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
+        // return the car class
         return ret;
     }
     public void  addCar(Car car){
-        Log.d("DBHELPER_AddCar","Initiated");
+        // add's a new car
+        //Log.d("DBHELPER_AddCar","Initiated");
         SQLiteDatabase db = this.getWritableDatabase();
         db.beginTransaction();
         int typeId= -1;
@@ -137,23 +150,27 @@ public class databaseHelper extends SQLiteOpenHelper {
         int fuelId= -1;
         ArrayList<Integer> selOpt = new ArrayList<>(0);
         int index = 0;
+        // get options id
         for (String opt :  car.options){
             if(Arrays.asList(options).contains(opt)){
                 selOpt.add(index);
             }
             index++;
         }
+        // get id type
         String GET_TYPE = "SELECT id FROM " + TABLE_TYPES + " WHERE " + KEY_TYPE_NAME + "= ?";
         Cursor cursor = db.rawQuery(GET_TYPE,new String[]{car.carType});
         if(cursor.moveToFirst()){
             typeId = cursor.getInt(cursor.getColumnIndex(KEY_TYPE_ID));
         }
+        // get id make
         String GET_MAKE = "SELECT id FROM " + TABLE_MAKE + " WHERE " + KEY_MAKE_NAME + "= ?";
         cursor = db.rawQuery(GET_MAKE,new String[]{car.carMake.toLowerCase()});
         if(cursor.moveToFirst()){
             makeId = cursor.getInt(cursor.getColumnIndex(KEY_MAKE_ID));
         }
         if(makeId == -1){
+            // insert carmake
             String INSERT_MAKE = "INSERT INTO " + TABLE_MAKE + "("+KEY_MAKE_NAME+")"+ "VALUES" +
                     "(" +
                     "'"+car.carMake +"'" + ")";
@@ -164,11 +181,13 @@ public class databaseHelper extends SQLiteOpenHelper {
                 makeId = cursor.getInt(0);
             }
         }
+        // get fuel id
         String GET_FUEL = "SELECT id FROM " + TABLE_FUEL + " WHERE " + KEY_FUEL_NAME + "= ?";
         cursor = db.rawQuery(GET_FUEL,new String[]{car.fuel});
         if (cursor.moveToFirst()){
             fuelId = cursor.getInt(cursor.getColumnIndex(KEY_FUEL_ID));
         }
+        // set values
         ContentValues val = new ContentValues();
         val.put(KEY_CAR_NAME,car.carName);
         val.put(KEY_CAR_YEAR,car.year);
@@ -177,8 +196,10 @@ public class databaseHelper extends SQLiteOpenHelper {
         val.put(KEY_CAR_MAKE_FK,makeId);
         val.put(KEY_CAR_TYPE_FK,typeId);
         val.put(KEY_CAR_PRICE,car.price);
+        // insert values
         long carId =db.insert(TABLE_CARS,null,val);
         if(carId != -1 && selOpt.size()>0){
+            // insert options
             String INSERT_OPTIONS = "INSERT INTO " + TABLE_OPTIONS_CAR + "("+KEY_OPTION_CAR_CAR+","+KEY_OPTIONS_CAR_OPTIONS+")" + " VALUES";
             index = 0;
             int temp = selOpt.get(0)+1;
@@ -196,13 +217,15 @@ public class databaseHelper extends SQLiteOpenHelper {
         db.setTransactionSuccessful();
         db.endTransaction();
         db.close();
-        Log.d("DBHELPER_AddCar","done");
+        //Log.d("DBHELPER_AddCar","done");
     }
     public List<String> getCarNames(){
+        // get all carnames
         String QUERY = "SELECT " + KEY_CAR_NAME + " FROM " + TABLE_CARS;
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(QUERY,null);
         List<String> ret = new ArrayList<>(0);
+        // set carname in list
         if(cursor.moveToFirst()){
             do{
                 ret.add(cursor.getString(cursor.getColumnIndex(KEY_CAR_NAME)));
@@ -211,9 +234,11 @@ public class databaseHelper extends SQLiteOpenHelper {
             cursor.close();
             db.close();
         }
+        // return list
         return ret;
     }
     public List<String> getCarMakes(){
+        // get all carmakes
         String QUERY = "SELECT carmake.make FROM cars LEFT JOIN carMake ON cars.makeId = carMake.id";
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(QUERY,null);
@@ -229,6 +254,7 @@ public class databaseHelper extends SQLiteOpenHelper {
         return ret;
     }
     public List<Integer> getCarIds(){
+        // get all carId's
         String QUERY = "SELECT id FROM cars";
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(QUERY,null);
@@ -249,6 +275,7 @@ public class databaseHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
+        // create the DB
         Log.d("DBHELPER_ONCREATE","OnCreate initiated.");
         String CREATE_CAR = "CREATE TABLE " + TABLE_CARS +
                 "(" +
@@ -320,6 +347,7 @@ public class databaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // check version if new version is higher drop all tables and create DB
         if (oldVersion != newVersion) {
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_OPTIONS);
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_CARS);

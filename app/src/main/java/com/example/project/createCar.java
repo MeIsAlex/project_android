@@ -40,11 +40,13 @@ public class createCar extends AppCompatActivity implements AdapterView.OnItemSe
         setSupportActionBar(myToolbar);
         checkboxes = findViewById(R.id.checkboxes);
         spinner = findViewById(R.id.spinner);
+        // create dropdown
         ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(this,
                 R.array.fueltype,
-                android.R.layout.simple_spinner_item
+                R.layout.option
         );
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.option );
+        // id's
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
         namel = findViewById(R.id.nameLabel);
@@ -63,11 +65,13 @@ public class createCar extends AppCompatActivity implements AdapterView.OnItemSe
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // if button is clicked get all values from form
                 int selectId = group.getCheckedRadioButtonId();
                 RadioButton radio = findViewById(selectId);
                 Car newcar = new Car();
                 newcar.carType = radio.getText().toString();
                 newcar.fuel = spinner.getSelectedItem().toString();
+                // get options
                 for (int i = 0;i<checkboxes.getChildCount();i++){
                     CheckBox box = (CheckBox)checkboxes.getChildAt(i);
                     if (box.isChecked()){
@@ -81,6 +85,7 @@ public class createCar extends AppCompatActivity implements AdapterView.OnItemSe
                 newcar.price = price.getText().toString();
                 newcar.year = year.getText().toString();
                 newcar.options = options;
+                // check if everything is filled in
                 if(newcar.price.isEmpty()){
                     pricel.setTextColor(Color.parseColor("#FF0000"));
                     status = 1;
@@ -102,9 +107,11 @@ public class createCar extends AppCompatActivity implements AdapterView.OnItemSe
                     status = 1;
                 }
                 if(status == 0){
+                    // write a new car to the database
                     databaseHelper databasehelper = databaseHelper.getInstance(createCar.this);
                     databasehelper.addCar(newcar);
                     List<String> test = databasehelper.getCarNames();
+                    // go back to main activity
                     Intent intent = new Intent(createCar.this, MainActivity.class);
                     startActivity(intent);
                 }

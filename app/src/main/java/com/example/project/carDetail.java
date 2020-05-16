@@ -23,6 +23,7 @@ public class carDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_detail);
+        // find id's
         fuel = findViewById(R.id.carFuel);
         name = findViewById(R.id.carName);
         make = findViewById(R.id.carMake);
@@ -32,10 +33,12 @@ public class carDetail extends AppCompatActivity {
         price =  findViewById(R.id.price);
         but = findViewById(R.id.button2);
         Intent intent = getIntent();
+        // get id from intent
         if(intent.hasExtra(Intent.EXTRA_TEXT)==true){
             String id = intent.getStringExtra(intent.EXTRA_TEXT);
             databaseHelper db = databaseHelper.getInstance(this);
             car = db.getCar(id);
+            // set the text in the labels
             fuel.setText(car.fuel);
             name.setText(car.carName);
             make.setText(car.carMake);
@@ -45,6 +48,7 @@ public class carDetail extends AppCompatActivity {
             price.setText(car.price);
             opt = findViewById(R.id.options);
             option = findViewById(R.id.option);
+            // create options list
             if(car.options.get(0) != null) {
                 final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.option, R.id.option, car.options) {
                     //https://stackoverflow.com/questions/7389997/how-to-make-an-item-in-a-list-view-non-clickable-in-android/17906722
@@ -63,6 +67,7 @@ public class carDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 databaseHelper db = databaseHelper.getInstance(carDetail.this);
+                // if delete is pressed delete car and go back to mainActivity
                 db.carDelete(car.id);
                 Intent intent = new Intent(carDetail.this, MainActivity.class);
                 startActivity(intent);

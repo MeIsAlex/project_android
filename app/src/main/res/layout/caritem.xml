@@ -6,16 +6,20 @@
     android:background="@drawable/back"
     >
     <TextView
+        android:background="@color/colorPrimary"
         android:id="@+id/car_text"
         android:layout_width="wrap_content"
         android:minHeight="50dp"
         android:layout_height="wrap_content"
+        android:textColor="@color/primaryTextColor"
         android:gravity="center"
         android:textSize="20dp"
         android:layout_centerHorizontal="true"
         android:layout_weight="1"
         />
     <TextView
+        android:background="@color/colorPrimary"
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/car_make"
         android:layout_width="wrap_content"
         android:minHeight="50dp"

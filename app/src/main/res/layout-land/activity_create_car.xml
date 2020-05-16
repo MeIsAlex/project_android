@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".createCar"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="0dp">
@@ -14,7 +15,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:theme="@style/AppTheme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
@@ -25,12 +26,8 @@
         android:layout_height="121dp"
         android:layout_marginStart="568dp"
         android:layout_marginLeft="568dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginRight="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/radioGroup">
 
         <LinearLayout
             android:id="@id/checkboxes"
@@ -44,43 +41,50 @@
                 android:id="@+id/gps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/gps" />
+                android:text="@string/gps"
+                android:textColor="@color/primaryTextColor" />
 
             <CheckBox
                 android:id="@+id/abs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/abs" />
+                android:text="@string/abs"
+                android:textColor="@color/primaryTextColor" />
 
             <CheckBox
                 android:id="@+id/climate_control"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/climate_control" />
+                android:text="@string/climate_control"
+                android:textColor="@color/primaryTextColor" />
 
             <CheckBox
                 android:id="@+id/parking_sensor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/parking_sensor" />
+                android:text="@string/parking_sensor"
+                android:textColor="@color/primaryTextColor" />
 
             <CheckBox
                 android:id="@+id/lane_assist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lane_assist" />
+                android:text="@string/lane_assist"
+                android:textColor="@color/primaryTextColor" />
 
             <CheckBox
                 android:id="@+id/cruise_control"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/cruise_control" />
+                android:text="@string/cruise_control"
+                android:textColor="@color/primaryTextColor" />
 
             <CheckBox
                 android:id="@+id/electric_windows"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/elecric_windows" />
+                android:text="@string/elecric_windows"
+                android:textColor="@color/primaryTextColor" />
         </LinearLayout>
     </ScrollView>
 
@@ -88,18 +92,15 @@
         android:id="@+id/radioGroup"
         android:layout_width="100dp"
         android:layout_height="215dp"
-
-        android:layout_marginStart="392dp"
-        android:layout_marginLeft="392dp"
-        android:layout_marginTop="122dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginLeft="71dp"
         android:layout_marginEnd="239dp"
         android:layout_marginRight="239dp"
-        android:layout_marginBottom="37dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/name"
+        app:layout_constraintTop_toTopOf="@+id/name">
 
         <RadioButton
             android:id="@+id/suv"
@@ -108,6 +109,7 @@
             android:checked="true"
             android:onClick="onRadioButtonClicked"
             android:text="@string/suv"
+            android:textColor="@color/primaryTextColor"
             android:textSize="12sp"
             tools:layout_editor_absoluteX="139dp"
             tools:layout_editor_absoluteY="263dp" />
@@ -118,6 +120,7 @@
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
             android:text="@string/hatch"
+            android:textColor="@color/primaryTextColor"
             android:textSize="12sp"
             tools:layout_editor_absoluteX="139dp"
             tools:layout_editor_absoluteY="263dp" />
@@ -128,6 +131,7 @@
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
             android:text="@string/sedan"
+            android:textColor="@color/primaryTextColor"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
             app:layout_constraintTop_toTopOf="@+id/textView"
@@ -139,6 +143,7 @@
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
             android:text="@string/conv"
+            android:textColor="@color/primaryTextColor"
             android:textSize="12sp"
             tools:layout_editor_absoluteX="139dp"
             tools:layout_editor_absoluteY="359dp" />
@@ -149,6 +154,7 @@
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
             android:text="@string/coupe"
+            android:textColor="@color/primaryTextColor"
             android:textSize="12sp"
             tools:layout_editor_absoluteX="139dp"
             tools:layout_editor_absoluteY="327dp" />
@@ -159,6 +165,7 @@
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
             android:text="@string/cross"
+            android:textColor="@color/primaryTextColor"
             android:textSize="12sp"
             tools:layout_editor_absoluteX="139dp"
             tools:layout_editor_absoluteY="295dp" />
@@ -169,6 +176,7 @@
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
             android:text="@string/minivan"
+            android:textColor="@color/primaryTextColor"
             android:textSize="12sp"
             tools:layout_editor_absoluteX="139dp"
             tools:layout_editor_absoluteY="231dp" />
@@ -199,6 +207,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toTopOf="@+id/year"
         app:layout_constraintStart_toStartOf="@+id/year"
         app:layout_constraintTop_toBottomOf="@+id/make"
@@ -208,9 +217,13 @@
         android:id="@+id/nameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="81dp"
-        android:text="carName"
+        android:text="@string/carname"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintEnd_toEndOf="@+id/yearLabel"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -219,6 +232,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="@+id/makeLabel"
         app:layout_constraintStart_toStartOf="@+id/price"
         app:layout_constraintTop_toTopOf="@+id/makeLabel" />
@@ -229,6 +243,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="@+id/nameLabel"
         app:layout_constraintStart_toStartOf="@+id/make"
         app:layout_constraintTop_toTopOf="@+id/nameLabel" />
@@ -238,7 +253,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="148dp"
-        android:text="carMake"
+        android:text="@string/carMake"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintEnd_toEndOf="@+id/yearLabel"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -249,7 +265,8 @@
         android:layout_marginStart="58dp"
         android:layout_marginLeft="58dp"
         android:layout_marginTop="288dp"
-        android:text="Year"
+        android:text="@string/Year"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="@+id/year"
         app:layout_constraintEnd_toEndOf="@+id/powerLabel"
         app:layout_constraintStart_toStartOf="parent"
@@ -263,7 +280,8 @@
         android:layout_marginStart="46dp"
         android:layout_marginLeft="46dp"
         android:layout_marginTop="360dp"
-        android:text="Power"
+        android:text="@string/Power"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="@+id/power"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -276,7 +294,8 @@
         android:layout_marginStart="54dp"
         android:layout_marginLeft="54dp"
         android:layout_marginTop="219dp"
-        android:text="Price"
+        android:text="@string/Price"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="@+id/price"
         app:layout_constraintEnd_toEndOf="@+id/yearLabel"
         app:layout_constraintStart_toStartOf="parent"
@@ -289,14 +308,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="108dp"
         android:layout_marginLeft="108dp"
-        android:layout_marginTop="337dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginBottom="20dp"
         android:ems="10"
         android:inputType="number"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/year"
@@ -306,6 +323,7 @@
         android:layout_marginBottom="76dp"
         android:ems="10"
         android:inputType="number"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/power"
         app:layout_constraintTop_toTopOf="parent"
@@ -316,13 +334,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="330dp"
         android:layout_marginLeft="330dp"
-        android:layout_marginTop="216dp"
-        android:layout_marginBottom="130dp"
-        android:text="CarType"
+        android:layout_marginTop="166dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginBottom="177dp"
+        android:text="@string/CarType"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/radioGroup"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.382" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView13"
@@ -330,15 +353,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
         android:layout_marginLeft="18dp"
-        android:text="options"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text="@string/options"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView2"
         app:layout_constraintStart_toEndOf="@+id/radioGroup"
-        app:layout_constraintTop_toTopOf="@+id/scrollView2" />
+        app:layout_constraintTop_toTopOf="@+id/scrollView2"
+        app:layout_constraintVertical_bias="0.578" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="214dp"
-        android:layout_height="22dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="108dp"
         android:layout_marginLeft="108dp"
         android:layout_marginTop="194dp"
@@ -352,7 +380,8 @@
         android:layout_marginStart="33dp"
         android:layout_marginLeft="33dp"
         android:layout_marginTop="195dp"
-        android:text="fuelType"
+        android:text="@string/fuelType"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="@+id/spinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -363,11 +392,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="623dp"
         android:layout_marginLeft="623dp"
-        android:layout_marginTop="346dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorAccent"
         android:text="@string/add"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginRight="2dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".carDetail">
+    tools:context=".carDetail"
+    android:background="@color/colorPrimaryDark">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -12,22 +13,10 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:theme="@style/AppTheme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="left" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -37,6 +26,7 @@
         app:layout_constraintGuide_begin="365dp" />
 
     <ListView
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/options"
         android:layout_width="202dp"
         android:layout_height="128dp"
@@ -47,80 +37,84 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="49dp"
         android:layout_marginLeft="49dp"
         android:layout_marginTop="93dp"
-        android:text="Name"
+        android:text="@string/carname"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="49dp"
         android:layout_marginLeft="49dp"
         android:layout_marginTop="148dp"
-        android:text="Make"
+        android:text="@string/carMake"
         app:layout_constraintEnd_toEndOf="@+id/textView23"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/textView33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="49dp"
         android:layout_marginLeft="49dp"
         android:layout_marginTop="219dp"
-        android:text="Options"
+        android:text="@string/options"
         app:layout_constraintEnd_toEndOf="@+id/textView25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/carMake"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="134dp"
         android:layout_marginLeft="134dp"
         android:layout_marginTop="148dp"
-        android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/carName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="134dp"
         android:layout_marginLeft="134dp"
         android:layout_marginTop="93dp"
-        android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/carType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="524dp"
         android:layout_marginLeft="524dp"
-        android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/carYear"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/price" />
 
     <TextView
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/textView32"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="469dp"
         android:layout_marginLeft="469dp"
-        android:text="Type"
+        android:text="@string/CarType"
         app:layout_constraintBottom_toTopOf="@+id/textView26"
         app:layout_constraintEnd_toEndOf="@+id/textView26"
         app:layout_constraintHorizontal_bias="1.0"
@@ -128,23 +122,24 @@
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
     <TextView
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/carFuel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="524dp"
         android:layout_marginLeft="524dp"
-        android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/carPower"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carYear" />
 
     <TextView
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="467dp"
         android:layout_marginLeft="467dp"
-        android:text="Price"
+        android:text="@string/Price"
         app:layout_constraintBottom_toTopOf="@+id/textView32"
         app:layout_constraintEnd_toEndOf="@+id/textView32"
         app:layout_constraintHorizontal_bias="1.0"
@@ -152,23 +147,24 @@
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
 
     <TextView
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/carYear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="524dp"
         android:layout_marginLeft="524dp"
-        android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/carFuel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carType" />
 
     <TextView
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/textView26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="471dp"
         android:layout_marginLeft="471dp"
-        android:text="Year"
+        android:text="@string/Year"
         app:layout_constraintBottom_toTopOf="@+id/textView27"
         app:layout_constraintEnd_toEndOf="@+id/textView27"
         app:layout_constraintHorizontal_bias="1.0"
@@ -176,45 +172,47 @@
         app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
     <TextView
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="528dp"
         android:layout_marginLeft="528dp"
-        android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/carType"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
 
     <TextView
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/carPower"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="524dp"
         android:layout_marginLeft="524dp"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carFuel" />
 
     <TextView
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="420dp"
         android:layout_marginLeft="420dp"
-        android:text="Power"
+        android:text="@string/Power"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
     <TextView
+        android:textColor="@color/primaryTextColor"
         android:id="@+id/textView27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="473dp"
         android:layout_marginLeft="473dp"
-        android:text="Fuel"
+        android:text="@string/fuelType"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="0.925"
@@ -222,13 +220,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
     <Button
+        android:textColor="@color/primaryTextColor"
+        android:background="@color/red"
         android:id="@id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="25dp"
         android:layout_marginRight="16dp"
-        android:text="Delete"
+        android:text="@string/delete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

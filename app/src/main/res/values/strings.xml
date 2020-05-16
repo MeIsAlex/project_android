@@ -19,10 +19,41 @@
     <string name="cruise_control">cruise control</string>
     <string name="elecric_windows">electric windows</string>
     <string name="add">add</string>
+    <string name="desc">Set darkmode app</string>
     <string-array name="fueltype">
         <item>petrol</item>
         <item>diesel</item>
         <item>electric</item>
         <item>hybrid</item>
     </string-array>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="darkmode">enable darkmode</string>
+    <string name="carname">carName</string>
+    <string name="carMake">carMake</string>
+    <string name="Year">Year</string>
+    <string name="Power">Power</string>
+    <string name="Price">Price</string>
+    <string name="CarType">carType</string>
+    <string name="options">options</string>
+    <string name="fuelType">fueltype</string>
+    <string name="delete">delete</string>
+    <string name="settings">Settings</string>
 </resources>

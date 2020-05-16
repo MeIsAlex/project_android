@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Car {
+    // Car class used to pretty up some of the code
     public int id;
     public String carType;
     public String year;

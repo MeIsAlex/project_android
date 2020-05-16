@@ -18,12 +18,14 @@ public class carsAdapter extends RecyclerView.Adapter<carsAdapter.ViewHolder> {
     private List<String> mMake;
     private OnCarListener mOnCarListener;
     public carsAdapter(List<String> cars,List<String> makes,OnCarListener OnCarListener) {
+        //create an adapter with a listener
         mcars = cars;
         mMake = makes;
         this.mOnCarListener = OnCarListener;
     }
     @Override
     public ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
+        //create the viewholder
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View carsView = inflater.inflate(R.layout.caritem, parent, false);
@@ -33,6 +35,7 @@ public class carsAdapter extends RecyclerView.Adapter<carsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(carsAdapter.ViewHolder holder, int position) {
+        // set name and make for each car
         String car = mcars.get(position);
         String maketext = mMake.get(position);
         TextView name = holder.carName;
@@ -51,6 +54,7 @@ public class carsAdapter extends RecyclerView.Adapter<carsAdapter.ViewHolder> {
         public TextView carMake;
         OnCarListener onCarListener;
         public ViewHolder(View itemView,OnCarListener onCarListener){
+            // create viewholder and find the 2 textviews
             super(itemView);
             carName = (TextView) itemView.findViewById(R.id.car_text);
             carMake = itemView.findViewById(R.id.car_make);
@@ -64,6 +68,7 @@ public class carsAdapter extends RecyclerView.Adapter<carsAdapter.ViewHolder> {
         }
     }
     public interface OnCarListener{
+        // implement interface to oncarclick in main
         void onCarClick(int pos);
     }
 }
